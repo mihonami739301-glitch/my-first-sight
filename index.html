@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio | 自己紹介</title>
+    <meta name="description" content="自己紹介ポートフォリオサイトです。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Portfolio.</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <section id="home" class="hero hidden">
+        <h1>Hi, I'm <span style="background: linear-gradient(to right, var(--accent-1), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Taro Yamada</span></h1>
+        <p>Web Developer & Designer based in Tokyo.</p>
+        <p>デジタルな世界で、クリエイティブな体験を作り出します。</p>
+        <a href="#about" class="hero-btn">詳しく見る</a>
+    </section>
+    <section id="about" class="hidden">
+        <h2>About Me</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Who am I?</h3>
+                <p>こんにちは、山田太郎です。Web開発とデザインに情熱を注ぐクリエイターです。使いやすさと美しさを兼ね備えたWebサイトを作ることを目標にしています。</p>
+            </div>
+            <div class="card">
+                <h3>Hobbies</h3>
+                <p>休日はカフェ巡りや写真を撮るのが好きです。新しい技術の勉強も欠かしません。</p>
+            </div>
+            <div class="card">
+                <h3>Vision</h3>
+                <p>テクノロジーの力で、人々の生活を少しでも豊かにしたいと考えています。</p>
+            </div>
+        </div>
+    </section>
+    <section id="skills" class="hidden">
+        <h2>Skills</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Frontend</h3>
+                <p>HTML, CSS, JavaScript, React, Next.js</p>
+            </div>
+            <div class="card">
+                <h3>Design</h3>
+                <p>Figma, UI/UX Design, Photoshop</p>
+            </div>
+            <div class="card">
+                <h3>Otehrs</h3>
+                <p>Git, VS Code, Linux</p>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="hidden">
+        <h2>Contact</h2>
+        <div class="card" style="text-align: center; max-width: 600px;">
+            <p>お仕事のご依頼やご相談は、以下のメールアドレスまでお気軽にご連絡ください。</p>
+            <p style="margin-top: 1rem; font-weight: bold; font-size: 1.2rem; color: var(--accent-2);">example@email.com</p>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
