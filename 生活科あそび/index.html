@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>せいかつか　 学習ページ</title>
+
+<style>
+  /* 全体の基本設定（読みやすいフォント、大きめの文字、白基調） */
+  body {
+    font-family: 'Hiragino Maru Gothic ProN', 'ヒラギノ丸ゴ ProN', 'Meiryo UI', 'Meiryo', sans-serif;
+    background-color: #f4f6f8; /* まぶしすぎない薄いグレー */
+    color: #333333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    font-size: 20px; /* 小1向けに文字を大きく */
+  }
+
+  /* スマートフォンでもPCでも見やすいように幅を制限 */
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 10px 20px 10px;
+  }
+
+  /* ヘッダー（タイトル） */
+  header {
+    background-color: #FF8C00; /* アクセントカラー：元気なオレンジ */
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 10px;
+    border-radius: 0 0 15px 15px;
+    margin-bottom: 35px; /* バッジのために少し余白を広く */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 28px;
+  }
+
+  /* 各セクション（カード型デザイン） */
+  section {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 3px solid #fff3e0; /* 柔らかい印象にするための枠線 */
+  }
+
+  /* タップできる要素 */
+  .selectable {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent; /* スマホのデフォルトのタップ色を消す */
+    transition: all 0.3s ease; /* ふわっと変化させる */
+    position: relative;
+    border: 2px solid transparent;
+    border-radius: 10px;
+  }
+
+  /* 選ばれたとき（ハイライト）のスタイル */
+  .selectable.selected {
+    background-color: #fff9e6; /* 薄い黄色でハイライト */
+    border-color: #FF8C00; /* 枠線を濃いオレンジに */
+    box-shadow: 0 4px 10px rgba(255, 140, 0, 0.2); /* 影を大きく */
+    transform: scale(1.02); /* 少し大きくして強調 */
+    z-index: 10;
+  }
+
+  /* 小さい音声マーク */
+  .mini-speaker {
+    display: inline-block;
+    background-color: #FF8C00;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 15px;
+    font-size: 14px;
+    margin-left: 10px;
+    vertical-align: text-bottom;
+    animation: bounce 2s infinite;
+  }
+
+  /* バッジのアニメーション */
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-5px); }
+    60% { transform: translateY(-3px); }
+  }
+
+  /* 見出し2（単元名や攻略法） */
+  h2 {
+    color: #FF8C00;
+    font-size: 26px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 4px dashed #FF8C00; /* 楽しい雰囲気を出す破線 */
+  }
+
+  /* 見出し3（ポイント） */
+  h3 {
+    font-size: 22px;
+    background-color: #fff3e0;
+    color: #cc7000;
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    display: inline-block;
+  }
+
+  /* 箇条書き（ポイント用） */
+  .point-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* 箇条書きの各行をボタンのようにする */
+  .point-list li {
+    margin-bottom: 12px;
+    padding: 12px 15px 12px 2.5em; /* タップしやすいようにパディングを追加 */
+    text-indent: -1.5em;
+    font-weight: bold;
+    background-color: #fafafa;
+    border: 2px solid #f0f0f0;
+  }
+
+  .point-list li::before {
+    content: '★ ';
+    color: #FF8C00;
+  }
+
+  /* こうりゃくほうのテキスト */
+  .strategy-text {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+    margin: 0;
+    background-color: #fafafa;
+    border: 2px solid #f0f0f0;
+  }
+
+  /* フッター */
+  footer {
+    text-align: center;
+    padding: 20px 10px 40px 10px;
+    color: #666666;
+    font-size: 16px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <!-- 「学習」にはひらがなのルビを振って読みやすくしています -->
+  <h1>せいかつか<br><ruby>学習<rt>がくしゅう</rt></ruby>ページ</h1>
+</header>
+
+<div class="container">
+  <main>
+    <section>
+      <h2>１．おす 📦👐</h2>
+      
+      <div>
+        <h3>☆ ここが ポイント</h3>
+        <ul class="point-list">
+          <li class="selectable" onclick="speakAndSelect(this)" data-speech="てで、ぎゅっと、おしてみよう。">てで ぎゅっと おしてみよう 👐 <span class="mini-speaker">🔊</span></li>
+          <li class="selectable" onclick="speakAndSelect(this)" data-speech="ダンボールを、かさねて、おしてみよう。">ダンボールを かさねて おしてみよう 📦📦 <span class="mini-speaker">🔊</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>２．かたむける 📦⚽️</h2>
+      
+      <div>
+        <h3>☆ ここが ポイント</h3>
+        <ul class="point-list">
+          <li class="selectable" onclick="speakAndSelect(this)" data-speech="ゆっくり、かたむけて、みよう。">ゆっくり かたむけて みよう 📦 <span class="mini-speaker">🔊</span></li>
+          <li class="selectable" onclick="speakAndSelect(this)" data-speech="コロコロ、ころがって、いくよ。">コロコロ ころがって いくよ ⚽️ <span class="mini-speaker">🔊</span></li>
+          <li class="selectable" onclick="speakAndSelect(this)" data-speech="どちらに、いくか、みてみよう。">どちらに いくか みてみよう 🎾 <span class="mini-speaker">🔊</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>３．かこむ 🏰</h2>
+      
+      <div>
+        <h3>☆ ここが ポイント</h3>
+        <ul class="point-list">
+          <li class="selectable" onclick="speakAndSelect(this)" data-speech="ひとが、はいれるように、ダンボールで、かこもう。">ひとが はいれるように ダンボールで かこもう 📦 <span class="mini-speaker">🔊</span></li>
+          <li class="selectable" onclick="speakAndSelect(this)" data-speech="なかに、すきなものを、いれよう。">なかに すきな ものを いれよう 🧸 <span class="mini-speaker">🔊</span></li>
+          <li class="selectable" onclick="speakAndSelect(this)" data-speech="だれかと、いっしょに、はいろう。">だれかと いっしょに はいろう 🏰 <span class="mini-speaker">🔊</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>こうりゃくほう</h2>
+      <p class="selectable strategy-text" onclick="speakAndSelect(this)" data-speech="どれか ひとつ えらんで やってみよう。">どれか ひとつ えらんで やってみよう <span class="mini-speaker">🔊</span></p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>このページは　がくしゅうよう　です</p>
+  </footer>
+</div>
+
+<script>
+  // 音声を読み上げ、選択した行に色をつける関数
+  function speakAndSelect(element) {
+    // タップされた行に 'selected' のマークをつける
+    // （一度選んだら、他の行を押しても色が消えずにずっと残ります）
+    element.classList.add('selected');
+
+    // 読み上げる文章を 'data-speech' から取り出す
+    const textToSpeak = element.getAttribute('data-speech');
+
+    // 音声読み上げの処理 (Web Speech API)
+    if ('speechSynthesis' in window) {
+      // もし今読んでいる途中なら、一度止める
+      window.speechSynthesis.cancel();
+      
+      // 新しく読み上げる準備
+      const utterance = new SpeechSynthesisUtterance(textToSpeak);
+      utterance.lang = 'ja-JP'; // 日本語
+      utterance.rate = 0.85;     // 少しゆっくりめに読む（1.0が標準）
+      utterance.pitch = 1.2;    // 少し高めの声にして親しみやすくする
+      
+      // 読み上げスタート
+      window.speechSynthesis.speak(utterance);
+    }
+  }
+</script>
+
+</body>
+</html>
