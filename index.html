@@ -3,70 +3,378 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio | 自己紹介</title>
-    <meta name="description" content="自己紹介ポートフォリオサイトです。">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>せいかつ こうりゃくずかん</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: #ffffff;
+            color: #333333;
+            line-height: 1.5;
+            font-size: 24px; /* さらに文字を大きく */
+            font-weight: bold;
+            padding-bottom: 40px;
+            user-select: none; /* テキスト選択を防ぎタップしやすく */
+        }
+
+        :root {
+            --accent-color: #66bb6a;
+            --accent-light: #e8f5e9;
+            --btn-color: #4caf50;
+        }
+
+        /* ヘッダー */
+        header {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 20px 10px;
+            text-align: center;
+            border-bottom: 5px solid #4caf50;
+            margin-bottom: 20px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* 各セクション */
+        section {
+            background-color: #f9f9f9;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 4px solid var(--accent-color);
+        }
+
+        h2 {
+            font-size: 28px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            text-align: center;
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            border: 2px dashed var(--accent-color);
+        }
+
+        /* 箇条書き（音声ボタン付き） */
+        .item-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            margin-bottom: 10px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+        }
+
+        .item-text {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-grow: 1;
+        }
+
+        /* 音声読み上げボタン */
+        .speak-btn {
+            background-color: #ffb74d;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 0 #f57c00;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-left: 10px;
+        }
+        
+        .speak-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #f57c00;
+        }
+
+        /* アクションボタン（リンク代わり） */
+        .action-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background-color: var(--accent-light);
+            border: 3px solid var(--accent-color);
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 22px;
+            font-weight: bold;
+            box-shadow: 0 5px 0 var(--accent-color);
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.1s;
+        }
+
+        .action-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 0 0 var(--accent-color);
+        }
+
+        /* ひみつ（攻略法） */
+        .himitsu-box {
+            background-color: #fff9c4;
+            border: 4px solid #fbc02d;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* アニメーション用オーバーレイ */
+        #animation-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #box-icon { font-size: 120px; transition: transform 0.3s; }
+        #hand-icon { font-size: 100px; position: relative; top: 30px; transition: top 0.3s; }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">Portfolio.</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-    <section id="home" class="hero hidden">
-        <h1>Hi, I'm <span style="background: linear-gradient(to right, var(--accent-1), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Taro Yamada</span></h1>
-        <p>Web Developer & Designer based in Tokyo.</p>
-        <p>デジタルな世界で、クリエイティブな体験を作り出します。</p>
-        <a href="#about" class="hero-btn">詳しく見る</a>
-    </section>
-    <section id="about" class="hidden">
-        <h2>About Me</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Who am I?</h3>
-                <p>こんにちは、山田太郎です。Web開発とデザインに情熱を注ぐクリエイターです。使いやすさと美しさを兼ね備えたWebサイトを作ることを目標にしています。</p>
-            </div>
-            <div class="card">
-                <h3>Hobbies</h3>
-                <p>休日はカフェ巡りや写真を撮るのが好きです。新しい技術の勉強も欠かしません。</p>
-            </div>
-            <div class="card">
-                <h3>Vision</h3>
-                <p>テクノロジーの力で、人々の生活を少しでも豊かにしたいと考えています。</p>
-            </div>
-        </div>
-    </section>
-    <section id="skills" class="hidden">
-        <h2>Skills</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Frontend</h3>
-                <p>HTML, CSS, JavaScript, React, Next.js</p>
-            </div>
-            <div class="card">
-                <h3>Design</h3>
-                <p>Figma, UI/UX Design, Photoshop</p>
-            </div>
-            <div class="card">
-                <h3>Otehrs</h3>
-                <p>Git, VS Code, Linux</p>
-            </div>
-        </div>
-    </section>
-    <section id="contact" class="hidden">
-        <h2>Contact</h2>
-        <div class="card" style="text-align: center; max-width: 600px;">
-            <p>お仕事のご依頼やご相談は、以下のメールアドレスまでお気軽にご連絡ください。</p>
-            <p style="margin-top: 1rem; font-weight: bold; font-size: 1.2rem; color: var(--accent-2);">example@email.com</p>
-        </div>
-    </section>
-    <script src="script.js"></script>
+    <header>
+        <h1>🌱 せいかつ こうりゃくずかん 🎒</h1>
+    </header>
+
+    <!-- カメラ起動用の隠しインプット -->
+    <input type="file" id="camera-input" accept="image/*" capture="environment" style="display:none;">
+
+    <div class="container">
+        
+        <section>
+            <h2>１．おす 🖐️</h2>
+            
+            <ul class="item-list">
+                <li class="item-row">
+                    <span class="item-text">✋ ぱーで おす</span>
+                    <button class="speak-btn" onclick="speakText('ぱーで、おす')">🔊</button>
+                </li>
+                <li class="item-row">
+                    <span class="item-text">📦📦📦 つなげて おす</span>
+                    <button class="speak-btn" onclick="speakText('つなげて、おす')">🔊</button>
+                </li>
+                <li class="item-row">
+                    <span class="item-text">🐢 ゆっくり おせる かな？</span>
+                    <button class="speak-btn" onclick="speakText('ゆっくり、おせる、かな？')">🔊</button>
+                </li>
+            </ul>
+
+            <ul class="action-list">
+                <li>
+                    <div class="action-btn" onclick="openCamera()">
+                        📷 しゃしんを とる
+                    </div>
+                </li>
+                <li>
+                    <div class="action-btn" onclick="playBoxAnimation()">
+                        📦 だんぼーるを おす
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>２．かたむける 🛝</h2>
+            
+            <ul class="item-list">
+                <li class="item-row">
+                    <span class="item-text">📦 だんぼーるを ななめに する</span>
+                    <button class="speak-btn" onclick="speakText('だんぼーるを、ななめに、する')">🔊</button>
+                </li>
+                <li class="item-row">
+                    <span class="item-text">⚾ ころがる よ</span>
+                    <button class="speak-btn" onclick="speakText('ころがる、よ')">🔊</button>
+                </li>
+            </ul>
+
+            <ul class="action-list">
+                <li>
+                    <div class="action-btn" onclick="playPopSoundAndSpeak('ボールを ころがすよ')">
+                        ⚾ ボールを ころがす
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>３．かこむ 🧱</h2>
+            
+            <ul class="item-list">
+                <li class="item-row">
+                    <span class="item-text">⭕ まわりを かこむ</span>
+                    <button class="speak-btn" onclick="speakText('まわりを、かこむ')">🔊</button>
+                </li>
+                <li class="item-row">
+                    <span class="item-text">👀 なかに いれる</span>
+                    <button class="speak-btn" onclick="speakText('なかに、いれる')">🔊</button>
+                </li>
+                <li class="item-row">
+                    <span class="item-text">🧱 ぶろっくで つくる</span>
+                    <button class="speak-btn" onclick="speakText('ぶろっくで、つくる')">🔊</button>
+                </li>
+            </ul>
+
+            <ul class="action-list">
+                <li>
+                    <div class="action-btn" onclick="playPopSoundAndSpeak('おしろを つくるよ')">
+                        🏰 おしろを つくる
+                    </div>
+                </li>
+                <li>
+                    <div class="action-btn" onclick="playPopSoundAndSpeak('かくれて')">
+                        ⭕ かこんで あそぶ
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>このページは がくしゅうよう です</p>
+    </footer>
+
+    <!-- ダンボールを押すアニメーション用 -->
+    <div id="animation-overlay">
+        <div id="box-icon">📦</div>
+        <div id="hand-icon">🖐️</div>
+    </div>
+
+    <script>
+        // --- 音を鳴らす機能（Web Audio API） ---
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound() {
+            // ブラウザの制限解除のため、ユーザーアクション時にAudioContextを再開
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            
+            // ピロン♪ という楽しい音を作成
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(880, audioCtx.currentTime); // ラの音
+            oscillator.frequency.exponentialRampToValueAtTime(1760, audioCtx.currentTime + 0.1); 
+            
+            gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.3);
+        }
+
+        // --- 音声読み上げ機能（Web Speech API） ---
+        function speakText(text) {
+            playSound(); // 押した時の音も鳴らす
+            
+            // 読み上げ中のものをキャンセル
+            window.speechSynthesis.cancel();
+            
+            // iPad(iOS)などで連続タップした時に音声が詰まるバグを回避するため、少し待ってから読み上げる
+            setTimeout(() => {
+                const msg = new SpeechSynthesisUtterance(text);
+                msg.lang = 'ja-JP';
+                
+                // より自然でスムーズに聞こえるように速度と高さを調整
+                msg.rate = 0.9;  // 1.0(標準)より少しだけゆっくり
+                msg.pitch = 1.0; // 自然な声の高さ
+                
+                window.speechSynthesis.speak(msg);
+            }, 50);
+        }
+
+        // --- その他のアクション時に音と読み上げを両方行う関数 ---
+        function playPopSoundAndSpeak(text) {
+            speakText(text);
+        }
+
+        // --- カメラを起動する ---
+        function openCamera() {
+            speakText('カメラを、ひらくよ');
+            // 少し待ってからカメラ入力（ファイル選択）を起動
+            setTimeout(() => {
+                document.getElementById('camera-input').click();
+            }, 800);
+        }
+
+        // --- ダンボールを押すアニメーション ---
+        function playBoxAnimation() {
+            speakText('よいしょ！');
+            
+            const overlay = document.getElementById('animation-overlay');
+            const box = document.getElementById('box-icon');
+            const hand = document.getElementById('hand-icon');
+            
+            // オーバーレイを表示
+            overlay.style.display = 'flex';
+            
+            // ちょっと遅れて手を動かし、ダンボールを傾ける
+            setTimeout(() => {
+                hand.style.top = '-10px'; // 手が上(奥)へ
+                box.style.transform = 'translateX(50px) rotate(15deg)'; // 箱が押されて右へ傾く
+            }, 500);
+            
+            // アニメーションを元に戻して非表示にする
+            setTimeout(() => {
+                hand.style.top = '30px';
+                box.style.transform = 'none';
+                overlay.style.display = 'none';
+            }, 2000);
+        }
+    </script>
 </body>
 </html>
